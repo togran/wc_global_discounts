@@ -18,7 +18,6 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 add_action('admin_menu', 'my_admin_menu');
 
-wp_enqueue_script( 'gd_script', plugin_dir_url( __FILE__ ).'script.js');
 
 function print_cat_list($parent=0, $level=0)
 {
@@ -47,6 +46,7 @@ function my_admin_menu() {
 
     function print_page_function()
     {
+        wp_enqueue_script( 'gd_script', plugin_dir_url( __FILE__ ).'script.js');
         if (isset($_POST['discount']) && isset($_POST['gdCat'])) {
             update_option('gd_discount', ["gdCat"=>$_POST['gdCat'], "discount"=>$_POST['discount']]);
             $current_discounts = get_option('gd_discount');
